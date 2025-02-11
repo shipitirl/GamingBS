@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Admin Panel - Manage Articles</h1>
+
+    <form id="article-form">
+        <input type="hidden" id="edit-index"> <!-- Stores index for editing -->
+
+        <label>Title:</label>
+        <input type="text" id="title" required>
+
+        <label>Description:</label>
+        <textarea id="description" required></textarea>
+
+        <label>Thumbnail:</label>
+        <input type="file" id="thumbnail" accept="image/*">
+
+        <button type="submit">Save Article</button>
+    </form>
+
+    <h2>Existing Articles</h2>
+    <div id="articles-list"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
