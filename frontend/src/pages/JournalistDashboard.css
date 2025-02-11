@@ -1,0 +1,51 @@
+.dashboard-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.article-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.article-form input, .article-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.article-form button {
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.article-form button:hover {
+    background: darkred;
+}
+
+.articles-list {
+    margin-top: 20px;
+}
+
+.article-card {
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.article-card img {
+    width: 100%;
+    border-radius: 5px;
+}
