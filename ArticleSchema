@@ -1,0 +1,8 @@
+const CommentSchema = new mongoose.Schema({
+    articleId: { type: mongoose.Schema.Types.ObjectId, ref: "Article" },
+    user: String,
+    text: String,
+    upvotes: { type: Number, default: 0 },
+    createdAt: { type: Date, default: Date.now }
+});
+const Comment = mongoose.model("Comment", CommentSchema);
