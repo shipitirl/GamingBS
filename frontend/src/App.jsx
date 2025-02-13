@@ -1,40 +1,26 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Articles from "./components/Articles";
 import Comments from "./components/Comments";
 import Auth from "./components/Auth";
 import WriterRankings from "./components/WriterRankings";
 import TopComments from "./components/TopComments";
-import JournalistDashboard from "./pages/journalistDashboard";
-import "./App.css"; // Add styling for navigation
+import JournalistDashboard from "./components/JournalistDashboard";
 
 function App() {
-  const [selectedArticle, setSelectedArticle] = useState(null);
-
   return (
     <Router>
       <div className="container">
-        {/* ✅ Navigation Bar */}
-        <nav className="navbar">
-          <h1>GamingBS Journal</h1>
-          <ul>
-            <li><Link to="/">🏠 Home</Link></li>
-            <li><Link to="/journalist-dashboard">📝 Journalist Dashboard</Link></li>
-          </ul>
-        </nav>
-
+        <h1>GamingBS Journal</h1>
         <Auth />
 
+        {/* Navigation Links */}
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/journalist-dashboard">Journalist Dashboard</Link>
+        </nav>
+
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="content">
-                <Articles onSelectArticle={setSelectedArticle} />
-                {selectedArticle && <Comments articleId={selectedArticle} />}
-              </div>
-            }
-          />
+          <Route path="/" element={<Articles />} />
           <Route path="/journalist-dashboard" element={<JournalistDashboard />} />
         </Routes>
 
