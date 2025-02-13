@@ -15,9 +15,12 @@ function App() {
 
         {/* Navigation Links */}
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/journalist-dashboard">Journalist Dashboard</Link>
-        </nav>
+          <ul>
+            <li><Link to="/">🏠 Home</Link></li>
+            <li><Link to="/journalist-dashboard">📝 Journalist Dashboard</Link></li>
+          </ul>
+</nav>
+
 
         <Routes>
           <Route path="/" element={<Articles />} />
