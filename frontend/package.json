@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build && cp public/_redirects dist/_redirects",
+    "build": "vite build && cp public/_redirects dist/_redirects || echo 'No redirects file'",
     "lint": "eslint .",
     "preview": "vite preview"
   },
