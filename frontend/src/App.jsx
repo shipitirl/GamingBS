@@ -5,6 +5,7 @@ import Auth from "./components/Auth";
 import WriterRankings from "./components/WriterRankings";
 import TopComments from "./components/TopComments";
 import JournalistDashboard from "./components/JournalistDashboard";
+import "./style.css"; 
 
 function App() {
   return (
