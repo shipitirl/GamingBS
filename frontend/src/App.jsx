@@ -5,7 +5,7 @@ import Comments from "./components/Comments";
 import Auth from "./components/Auth";
 import WriterRankings from "./components/WriterRankings";
 import TopComments from "./components/TopComments";
-import JournalistDashboard from "./pages/JournalistDashboard";
+import JournalistDashboard from "./pages/journalistDashboard";
 import "./App.css"; // Add styling for navigation
 
 function App() {
