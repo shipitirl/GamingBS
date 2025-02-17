@@ -17,6 +17,15 @@ app.use(passport.session());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const ensureAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.status(401).json({ message: "Unauthorized" });
+};
+
+
+
 // User Schema
 const UserSchema = new mongoose.Schema({
     twitterId: String,
