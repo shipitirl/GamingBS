@@ -1,9 +1,8 @@
-// src/App.jsx
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from './Home'; // Your home page component
-import JournalistDashboard from './components/JournalistDashboard'; // Your dashboard component
-import NotFoundPage from './components/NotFoundPage'; // A 404 component (create if needed)
+import Home from './Home'; // Your landing page component
+import JournalistDashboard from './components/JournalistDashboard.jsx'; // Or './components/JournalistDashboard' if that’s the file name
+import NotFoundPage from './components/NotFoundPage'; // Your 404 component (if you created it)
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
         <Link to="/" style={{ marginRight: '1rem' }}>Home</Link>
         <Link to="/journalist">Journalist Dashboard</Link>
       </nav>
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/journalist" element={<JournalistDashboard />} />

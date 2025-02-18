@@ -32,7 +32,7 @@ const JournalistDashboard = () => {
       await axios.post("https://your-backend.onrender.com/articles", {
         ...article,
         tags: article.tags.split(",").map(tag => tag.trim()), // Convert tags to array
-        author: "Journalist Name", // Replace this with authenticated user later
+        author: "Journalist Name", // Replace with authenticated user later
       });
       alert("✅ Article submitted successfully!");
       setArticle({ title: "", description: "", image: "", tags: "" });
