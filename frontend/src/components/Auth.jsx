@@ -1,5 +1,4 @@
 // src/components/Auth.jsx
-import React from 'react';
 
 const Auth = () => {
   return (

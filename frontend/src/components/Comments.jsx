@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 export async function fetchComments(articleId) {
-    const response = await fetch(`https://your-backend-url.onrender.com/articles/${articleId}/comments`);
-    return response.json();
+    try {
+        const response = await fetch(`https://your-backend-url.onrender.com/articles/${articleId}/comments`);
+        if (!response.ok) throw new Error("Failed to fetch comments");
+        return response.json();
+    } catch (error) {
+        console.error("Error fetching comments:", error);
+        return [];
+    }
 }
 
 export async function postComment(articleId, text) {
-    const response = await fetch(`https://your-backend-url.onrender.com/articles/${articleId}/comments`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text }),
-    });
-    return response.json();
+    try {
+        const response = await fetch(`https://your-backend-url.onrender.com/articles/${articleId}/comments`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text }),
+        });
+        if (!response.ok) throw new Error("Failed to post comment");
+        return response.json();
+    } catch (error) {
+        console.error("Error posting comment:", error);
+        return null;
+    }
 }
 
 function Comments({ articleId }) {
@@ -24,9 +37,12 @@ function Comments({ articleId }) {
 
     const handleCommentSubmit = async () => {
         if (newComment.trim() === "") return;
-        await postComment(articleId, newComment);
-        setNewComment("");
-        fetchComments(articleId).then(setComments);
+
+        const newCommentData = await postComment(articleId, newComment);
+        if (newCommentData) {
+            setComments([...comments, newCommentData]); // Append new comment instead of refetching all
+            setNewComment("");
+        }
     };
 
     return (
@@ -40,10 +56,18 @@ function Comments({ articleId }) {
                     </div>
                 ))}
             </div>
-            <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Write a comment..."></textarea>
+            <textarea 
+                value={newComment} 
+                onChange={(e) => setNewComment(e.target.value)} 
+                placeholder="Write a comment..."
+            />
             <button onClick={handleCommentSubmit}>Post Comment</button>
         </div>
     );
 }
+
+Comments.propTypes = {
+    articleId: PropTypes.string.isRequired, // Ensure articleId is a string
+};
 
 export default Comments;

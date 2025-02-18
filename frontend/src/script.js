@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", () => {
     const newsContainer = document.querySelector(".top-stories .grid");
 
@@ -13,8 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `).join("");
     }
-});
 
+    // ✅ Call functions to prevent unused warnings
+    loadNews();
+    setupSearch();
+});
 
 // Load news dynamically
 function loadNews() {
