@@ -3,11 +3,34 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true, // Clears old builds
-    rollupOptions: {
-      input: 'public/index.html', // Ensure Vite finds the entry file
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+      scopeBehavior: 'local',
     },
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/styles/variables.scss";`
+      }
+    }
   },
+  build: {
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom'],
+          'styles': ['./src/index.css', './src/App.css']
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
+  },
+  server: {
+    port: 5173,
+    strictPort: true,
+    cors: true
+  }
 });

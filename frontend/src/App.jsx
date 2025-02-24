@@ -1,33 +1,26 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Articles from "./components/Articles";
-import Auth from "./components/Auth";
-import WriterRankings from "./components/WriterRankings";
-import TopComments from "./components/TopComments";
-import JournalistDashboard from "./components/JournalistDashboard";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import JournalistDashboard from './components/JournalistDashboard';
+import styles from './App.module.css';
 
 function App() {
   return (
     <Router>
-      <div className="container">
-        <h1>GamingBS Journal</h1>
-        <Auth />
-
-        {/* Navigation Links */}
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/journalist-dashboard">Journalist Dashboard</Link>
-        </nav>
-
-        {/* Routes for navigation */}
-        <Routes>
-          <Route path="/" element={<Articles />} />
-          <Route path="/journalist-dashboard" element={<JournalistDashboard />} />
-        </Routes>
-
-        <aside>
-          <TopComments />
-          <WriterRankings />
-        </aside>
+      <div className={styles.app}>
+        <Sidebar />
+        <main className={styles.mainContent}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/journalist" element={<JournalistDashboard />} />
+            <Route path="/dashboard" element={<JournalistDashboard />} />
+            <Route path="/articles" element={<Home />} />
+            {/* Add a catch-all route for 404 */}
+            <Route path="*" element={<div>Page not found</div>} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
     </Router>
   );

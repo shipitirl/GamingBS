@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
-
-export async function fetchTopWriters() {
-    const response = await fetch("https://your-backend-url.onrender.com/writers/rankings");
-    return response.json();
-}
+import { fetchWriterRankings } from "../utils/rankingsUtils";
 
 function WriterRankings() {
-    const [writers, setWriters] = useState([]);
+    const [rankings, setRankings] = useState([]);
 
     useEffect(() => {
-        fetchTopWriters().then(setWriters);
+        fetchWriterRankings().then(setRankings);
     }, []);
 
     return (
         <div className="writer-rankings">
-            <h3>Top Writers</h3>
+            <h2>Top Writers</h2>
             <ul>
-                {writers.map(writer => (
+                {rankings.map(writer => (
                     <li key={writer.id}>
-                        <img src={writer.profileImage} width="50" alt="Writer Profile" />
-                        {writer.username} - {writer.totalUpvotes} Upvotes <span>{writer.rank}</span>
+                        {writer.name} - {writer.points} Points
                     </li>
                 ))}
             </ul>
