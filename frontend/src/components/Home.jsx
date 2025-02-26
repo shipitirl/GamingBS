@@ -84,9 +84,7 @@ const Home = () => {
         setInitialized(true);
       } catch (error) {
         console.error('Error fetching articles:', error);
-        // Use sample articles if backend is not available
-        setArticles(sampleArticles);
-        setError('Unable to connect to server, showing sample content');
+        setError('Unable to connect to server');
         setInitialized(true);
       } finally {
         setLoading(false);
@@ -94,7 +92,7 @@ const Home = () => {
     };
 
     fetchArticles();
-  }, [activeCategory]); // Added activeCategory as dependency
+  }, [activeCategory]); // Keep only activeCategory as dependency
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);

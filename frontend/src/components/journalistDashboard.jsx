@@ -42,29 +42,55 @@ const JournalistDashboard = () => {
   const validateForm = useCallback(() => {
     const errors = {};
     const { title, description, category, author, tags } = state.formData;
-
-    if (!title?.trim() || title.trim().length < 3) {
-      errors.title = 'Title must be at least 3 characters long';
+  
+    // Title: At least 5 characters (adjust based on backend requirements)
+    if (!title?.trim() || title.trim().length < 5) {
+      errors.title = 'Title must be at least 5 characters long';
     }
-    if (!description?.trim() || description.trim().length < 3) {
-      errors.description = 'Description must be at least 3 characters long';
+  
+    // Description: At least 10 characters (adjust based on backend requirements)
+    if (!description?.trim() || description.trim().length < 10) {
+      errors.description = 'Description must be at least 10 characters long';
     }
+  
+    // Category: Must be non-empty and one of the allowed values
+    const allowedCategories = [
+      'Latest',
+      'Games',
+      'Movies',
+      'TV',
+      'PlayStation',
+      'Xbox',
+      'Nintendo',
+    ];
     if (!category?.trim()) {
       errors.category = 'Category is required';
+    } else if (!allowedCategories.includes(category.trim())) {
+      errors.category = 'Category must be one of: Latest, Games, Movies, TV, PlayStation, Xbox, Nintendo';
     }
+  
+    // Author: Required, no minimum length specified (adjust if backend requires more)
     if (!author?.trim()) {
       errors.author = 'Author name is required';
     }
-    const tagArray = tags?.trim().split(',').filter(tag => tag.trim().length > 0) || [];
+  
+    // Tags: At least two comma-separated tags, trimmed
+    const tagArray = tags?.trim().split(',').map(tag => tag.trim()).filter(tag => tag.length > 0) || [];
     if (tagArray.length < 2) {
       errors.tags = 'Please provide at least two comma-separated tags';
     }
+  
+    // Images: At least one image required
     if (state.selectedFiles.length === 0) {
       errors.images = 'Please upload at least one image';
     }
-
+  
     return errors;
   }, [state.formData, state.selectedFiles]);
+
+
+
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
