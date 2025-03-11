@@ -1,40 +1,15 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-// Check if the model already exists before defining it
-const Article = mongoose.models.Article || mongoose.model('Article', new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  images: [{
-    type: String
-  }],
-  tags: {
-    type: String
-  },
-  author: {
-    type: String,
-    default: 'STAFF'
-  },
-  category: {
-    type: String,
-    required: true,
-    enum: ['Latest', 'Games', 'Movies', 'TV', 'PlayStation', 'Xbox', 'Nintendo']
-  },
-  platform: {
-    type: String,
-    enum: ['', 'PlayStation', 'Xbox', 'Nintendo', 'PC', 'Mobile', 'Multiple']
-  },
-  publishDate: {
-    type: Date,
-    default: Date.now
-  }
-}, {
-  timestamps: true
-}));
+const articleSchema = new Schema({
+  title: { type: String, required: true },
+  description: { type: String },
+  category: { type: String },
+  author: { type: String },
+  tags: [{ type: String }], // Array of strings
+  images: [{ type: Schema.Types.ObjectId }], // Array of image paths
+  publishDate: { type: Date, default: Date.now },
+  upvotes: { type: Number, default: 0 } // Added for upvoting
+});
 
-module.exports = Article; 
+module.exports = mongoose.model('Article', articleSchema);

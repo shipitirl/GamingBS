@@ -18,6 +18,8 @@ function App() {
             <Route path="/articles" element={<Home />} />
             {/* Add a catch-all route for 404 */}
             <Route path="*" element={<div>Page not found</div>} />
+            
+
           </Routes>
         </main>
         <Footer />

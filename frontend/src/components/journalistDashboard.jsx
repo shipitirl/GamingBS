@@ -338,6 +338,7 @@ const JournalistDashboard = () => {
           <input
             type="file"
             id="images"
+            name="file"
             accept="image/*"
             multiple
             onChange={handleFileSelect}
